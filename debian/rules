@@ -1,0 +1,46 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE = 1
+
+
+# See FEATURE AREAS in dpkg-buildflags(1).
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# See ENVIRONMENT in dpkg-buildflags(1).
+# Package maintainers to append CFLAGS.
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# Package maintainers to append LDFLAGS.
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+
+ROCM_VERSION=6.2.4
+ROCM_PATH=/opt/rocm-${ROCM_VERSION}
+MAKEOPTS := "-j$(shell nproc)"
+TOP_DIR := $(shell pwd)
+BUILD_PATH := build-rocm
+DEB_INST := $(TOP_DIR)/debian/tmp/
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	cmake -S ${TOP_DIR} \
+	  -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_C_COMPILER=${ROCM_PATH}/bin/clang \
+      -DCMAKE_CXX_COMPILER=${ROCM_PATH}/bin/clang++ \
+      -DBUILD_SHARED_LIBS="OFF" \
+      -DENABLE_LDCONFIG=OFF \
+      -DROCPROFILER_REGISTER_BUILD_CI=1 \
+      -DROCPROFILER_REGISTER_BUILD_TESTS=1 \
+      -DROCPROFILER_REGISTER_BUILD_SAMPLES=1 \
+	  -DCMAKE_INSTALL_PREFIX=${ROCM_PATH} \
+	  -B ${BUILD_PATH} \
+
+
+override_dh_auto_build:
+	cmake --build $(BUILD_PATH) -- ${MAKEOPTS}
+
+override_dh_auto_install:
+	DESTDIR=$(DEB_INST)/ cmake --build $(BUILD_PATH) -- ${MAKEOPTS} install
+	dh_auto_install
+

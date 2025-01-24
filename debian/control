@@ -1,0 +1,20 @@
+Source: rocprofiler-register-rocm
+Section: unknown
+Priority: optional
+Maintainer: CHEN Xuan <chenxuan@iscas.ac.cn>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake,
+Standards-Version: 4.7.0
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Browser: https://salsa.debian.org/debian/rocprofiler-register-rocm
+#Vcs-Git: https://salsa.debian.org/debian/rocprofiler-register-rocm.git
+
+Package: rocprofiler-register-rocm
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: <insert up to 60 chars description>
+ <Insert long description, indented with spaces.>
