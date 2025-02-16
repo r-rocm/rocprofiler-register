@@ -7,9 +7,9 @@ Build-Depends:
  debhelper-compat (= 13),
  cmake,
  libfmt-dev,
- libfmt-10,
+ libfmt-9,
  libgoogle-glog-dev,
- libgoogle-glog0v6t64,
+ libgoogle-glog0v6,
 Standards-Version: 4.7.0
 Homepage: <insert the upstream URL, if relevant>
 #Vcs-Browser: https://salsa.debian.org/debian/rocprofiler-register-rocm
