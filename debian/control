@@ -7,7 +7,7 @@ Build-Depends:
  debhelper-compat (= 13),
  cmake,
  libfmt-dev,
- libfmt-9,
+ libfmt9,
  libgoogle-glog-dev,
  libgoogle-glog0v6,
 Standards-Version: 4.7.0
