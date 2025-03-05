@@ -1,0 +1,18 @@
+From: Sakura286 <sakura286@outlook.com>
+Date: Thu, 6 Mar 2025 00:52:59 +0800
+Subject: fmt-debug
+
+---
+ external/CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/external/CMakeLists.txt b/external/CMakeLists.txt
+index 339f0a0..9cb8d94 100644
+--- a/external/CMakeLists.txt
++++ b/external/CMakeLists.txt
+@@ -34,4 +34,5 @@ if(ROCPROFILER_REGISTER_BUILD_FMT)
+     add_subdirectory(fmt EXCLUDE_FROM_ALL)
+ else()
+     find_package(fmt REQUIRED)
++    message(WARNING "!!!!!Finding fmt")
+ endif()

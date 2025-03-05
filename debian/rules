@@ -36,7 +36,8 @@ override_dh_auto_configure:
       -DCMAKE_INSTALL_PREFIX=${ROCM_PATH} \
       -DROCPROFILER_REGISTER_BUILD_GLOG=OFF \
       -DROCPROFILER_REGISTER_BUILD_FMT=OFF \
-      -B ${BUILD_PATH} \
+      --log-level=DEBUG \
+      -B ${BUILD_PATH}
 
 
 override_dh_auto_build:
