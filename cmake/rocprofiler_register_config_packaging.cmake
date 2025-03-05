@@ -1,4 +1,5 @@
 # configure packaging
+include(CPack)
 
 # Add packaging directives
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
@@ -195,5 +196,3 @@ if(DEFINED ENV{ROCM_LIBPATCH_VERSION})
     set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION}.$ENV{ROCM_LIBPATCH_VERSION}")
     message("Using CPACK_PACKAGE_VERSION ${CPACK_PACKAGE_VERSION}")
 endif()
-
-include(CPack)
