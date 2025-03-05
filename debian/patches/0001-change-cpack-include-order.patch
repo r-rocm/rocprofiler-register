@@ -1,0 +1,24 @@
+From: Sakura286 <sakura286@outlook.com>
+Date: Wed, 5 Mar 2025 23:59:02 +0800
+Subject: change cpack include order
+
+---
+ cmake/rocprofiler_register_config_packaging.cmake | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/cmake/rocprofiler_register_config_packaging.cmake b/cmake/rocprofiler_register_config_packaging.cmake
+index 5e98f3e..35ffeb3 100644
+--- a/cmake/rocprofiler_register_config_packaging.cmake
++++ b/cmake/rocprofiler_register_config_packaging.cmake
+@@ -1,4 +1,5 @@
+ # configure packaging
++include(CPack)
+ 
+ # Add packaging directives
+ set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+@@ -195,5 +196,3 @@ if(DEFINED ENV{ROCM_LIBPATCH_VERSION})
+     set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION}.$ENV{ROCM_LIBPATCH_VERSION}")
+     message("Using CPACK_PACKAGE_VERSION ${CPACK_PACKAGE_VERSION}")
+ endif()
+-
+-include(CPack)
