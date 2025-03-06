@@ -2,30 +2,18 @@
 
 export DH_VERBOSE = 1
 
-
-# See FEATURE AREAS in dpkg-buildflags(1).
-#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-
-# See ENVIRONMENT in dpkg-buildflags(1).
-# Package maintainers to append CFLAGS.
-#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
-# Package maintainers to append LDFLAGS.
-#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
-
-
 ROCM_VERSION=6.2.4
 ROCM_PATH=/opt/rocm-${ROCM_VERSION}
 MAKEOPTS := "-j$(shell nproc)"
 TOP_DIR := $(shell pwd)
 BUILD_PATH := build-rocm
-DEB_INST := $(TOP_DIR)/debian/tmp/
+DEB_INST_DIR := $(TOP_DIR)/debian/rocprofiler-register-rocm
 
 %:
 	dh $@
 
 # CMAKE_FIND_PACKAGE_TARGETS_GLOBAL must be set to TRUE
 # to enable system glog and fmt library
-
 override_dh_auto_configure:
 	cmake -S ${TOP_DIR} \
       -DCMAKE_BUILD_TYPE=Release \
@@ -42,11 +30,12 @@ override_dh_auto_configure:
       -DCMAKE_FIND_PACKAGE_TARGETS_GLOBAL=TRUE \
       -B ${BUILD_PATH}
 
-
 override_dh_auto_build:
 	cmake --build $(BUILD_PATH) -- ${MAKEOPTS}
 
 override_dh_auto_install:
-	DESTDIR=$(DEB_INST)/ cmake --build $(BUILD_PATH) -- ${MAKEOPTS} install
-	dh_auto_install
+	DESTDIR=$(DEB_INST_DIR)/ cmake --build $(BUILD_PATH) -- ${MAKEOPTS} install
+
+override_dh_install:
+	echo "dh_install skipped"
 
