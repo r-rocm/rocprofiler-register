@@ -23,6 +23,9 @@ DEB_INST := $(TOP_DIR)/debian/tmp/
 %:
 	dh $@
 
+# CMAKE_FIND_PACKAGE_TARGETS_GLOBAL must be set to TRUE
+# to enable system glog and fmt library
+
 override_dh_auto_configure:
 	cmake -S ${TOP_DIR} \
       -DCMAKE_BUILD_TYPE=Release \
@@ -36,7 +39,7 @@ override_dh_auto_configure:
       -DCMAKE_INSTALL_PREFIX=${ROCM_PATH} \
       -DROCPROFILER_REGISTER_BUILD_GLOG=OFF \
       -DROCPROFILER_REGISTER_BUILD_FMT=OFF \
-      --log-level=DEBUG \
+      -DCMAKE_FIND_PACKAGE_TARGETS_GLOBAL=TRUE \
       -B ${BUILD_PATH}
 
 
