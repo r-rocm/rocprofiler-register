@@ -12,13 +12,12 @@ Build-Depends:
  libgoogle-glog0v6,
 Standards-Version: 4.7.0
 Homepage: <insert the upstream URL, if relevant>
-#Vcs-Browser: https://salsa.debian.org/debian/rocprofiler-register-rocm
-#Vcs-Git: https://salsa.debian.org/debian/rocprofiler-register-rocm.git
+Vcs-Browser: https://github.com/r-rocm/rocprofiler-register
+Vcs-Git: https://github.com/r-rocm/rocprofiler-register.git
 
 Package: rocprofiler-register-rocm
 Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
-Description: <insert up to 60 chars description>
- <Insert long description, indented with spaces.>
+Description: rocprofiler-register
